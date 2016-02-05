@@ -44,6 +44,8 @@ angular.module('myApp', ['...', 'ngSanitize','watgAutocompleteApp']);
 
 ### Step 2. Configuration
 
+```js
 $scope.remoteAutoCompleteSourceUrl = "http://...";
 $scope.minLength = 1; //based on jquery-ui auto-complete API
 $scope.selectedItem={};
+```
