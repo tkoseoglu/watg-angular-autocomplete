@@ -1,6 +1,6 @@
 {
   "name": "watg-angular-autocomplete",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "homepage": "https://github.com/tkoseoglu/watg-angular-autocomplete",
   "author": {
     "name": "Tolga Koseoglu",
@@ -11,11 +11,11 @@
   "keywords": [
     "angularjs",
     "autocomplete",
-    "directive"
+    "directive",
+    "jquery-ui"
   ],
   "main": "dist/js/watg-angular-autocomplete.js",
   "license": "MIT",
-  "moduleType": [],
   "ignore": [
     "**/.*",
     "node_modules",
@@ -31,10 +31,7 @@
     "jquery": "1.10.2"
   },
   "devDependencies": {
-    "jquery": "*",
     "bootstrap": "*",
-    "fontawesome": "*",
-    "toastr": "*",
     "angular-sanitize": "^1.5.0",
     "angular-route": "^1.5.0"
   }
