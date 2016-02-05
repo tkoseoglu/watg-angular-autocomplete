@@ -1,0 +1,28 @@
+<!-- here, test the main app feature, which is the watgAutocomplete directive -->
+<br>
+<div>
+   <h3>Staff</h3>
+   <input type="text" class="form-control"
+   watg-autocomplete min-length="minLength"
+   item-display-property-name="'FullName'"
+   ng-model="staff.FullName"
+   remote-url="staffAutoCompleteRemoteUrl"
+   selected-item="staff"
+   />
+   <br>
+   <br> Output
+   <pre>{{staff|json}}</pre>
+</div>
+<div>
+   <h3>Country</h3>
+   <input type="text" class="form-control"
+   watg-autocomplete min-length="minLength"
+   item-display-property-name="'Name'"
+   ng-model="country.Name"
+   remote-url="countryAutoCompleteRemoteUrl"
+   selected-item="country"
+   />
+   <br>
+   <br> Output
+   <pre>{{country|json}}</pre>
+</div>
