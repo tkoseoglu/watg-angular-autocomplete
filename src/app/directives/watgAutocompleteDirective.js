@@ -19,7 +19,7 @@
             $(function() {
                 element.autocomplete({
                     source: function(request, response) {
-                        $.get({
+                        $.ajax({
                             url: scope.config.url,
                             dataType: "json",
                             xhrFields: {
