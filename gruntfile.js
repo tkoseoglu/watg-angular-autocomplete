@@ -8,6 +8,10 @@ module.exports = function(grunt) {
             beforeconcat: ["gruntfile.js", "app/**/*.js"]
         },
         concat: {
+            appdist: {
+                src: ['src/app/appdist.js', 'src/app/directives/watgAutocompleteDirective.js'],
+                dest: 'dist/js/watg-angular-autocomplete.js'
+            },
             app: {
                 src: ["src/app/app.js", "src/app/**/*.js"],
                 dest: "dev/js/watg-angular-autocomplete.js"
@@ -118,4 +122,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.registerTask('default', ["jshint", 'concat', 'uglify', 'concat_css', 'cssmin', 'copy', 'watch']); //, 'watch'
+    grunt.registerTask('dist', ['concat:appdist', 'uglify:appdist', 'concat_css:assetsdist', 'cssmin:assetsdist']);
 };
