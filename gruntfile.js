@@ -8,13 +8,13 @@ module.exports = function(grunt) {
             beforeconcat: ["gruntfile.js", "app/**/*.js"]
         },
         concat: {
-            appdist: {
+            app: {
+                src: ["src/app/app.js", "src/app/core/*.js", "src/app/directives/*.js", "src/app/tests/*.js"],
+                dest: "dev/js/watg-angular-autocomplete.js"
+            },
+            appDist: {
                 src: ['src/app/appdist.js', 'src/app/directives/watgAutocompleteDirective.js'],
                 dest: 'dist/js/watg-angular-autocomplete.js'
-            },
-            app: {
-                src: ["src/app/app.js", "src/app/**/*.js"],
-                dest: "dev/js/watg-angular-autocomplete.js"
             },
             vendor: {
                 src: [
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
                 ],
                 dest: 'dev/js/vendor.js'
             },
-            vendorMin: {
+            vendorDist: {
                 src: [
                     'bower_components/jquery/dist.jquery.min.js',
                     'bower_components/jquery-ui/jquery-ui.min.js',
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
                     'dev/js/watg-angular-autocomplete.min.js': ['dev/js/watg-angular-autocomplete.js']
                 }
             },
-            appdist: {
+            appDist: {
                 files: {
                     'dist/js/watg-angular-autocomplete.min.js': ['dist/js/watg-angular-autocomplete.js']
                 }
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
                 src: ["src/assets/watg-angular-autocomplete.css"],
                 dest: "dev/css/watg-angular-autocomplete.css"
             },
-            assetsdist: {
+            assetsDist: {
                 src: ["src/assets/watg-angular-autocomplete.css"],
                 dest: "dist/css/watg-angular-autocomplete.css"
             }
@@ -74,14 +74,14 @@ module.exports = function(grunt) {
                     'dev/css/watg-angular-autocomplete.min.css': ['dev/css/watg-angular-autocomplete.css']
                 }
             },
-            assetsdist: {
+            assetsDist: {
                 files: {
                     'dist/css/watg-angular-autocomplete.min.css': ['dist/css/watg-angular-autocomplete.css']
                 }
             },
             vendor: {
                 files: {
-                    'dev/css/vendor.min.css': [
+                    'dev/css/vendor.css': [
                         'bower_components/bootstrap/dist/css/bootstrap.css',
                         'bower_components/fontawesome/css/font-awesome.css',
                         'bower_components/jquery-ui/themes/base/all.css',
@@ -90,11 +90,11 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            files: ['src/app/**/*.js', 'src/assets/*.css'],
+            files: ["src/app/app.js", "src/app/core/*.js", "src/app/**/*.js", "src/assets/*.css"],
             tasks: ['concat:app', 'uglify', 'concat_css', 'cssmin:assets']
         },
         copy: {
-            main: {
+            dev: {
                 files: [
                     {
                         expand: true,
@@ -105,8 +105,19 @@ module.exports = function(grunt) {
                     },
                     {
                         expand: true,
-                        src: ['bower_components/jquery-ui/themes/base/images/*'],
+                        src: ['bower_components/jquery-ui/themes/base/images/*',"src/assets/images/*"],
                         dest: 'dev/css/images/',
+                        filter: 'isFile',
+                        flatten: true
+                    }
+                ]
+            },
+            dist: {
+                files: [
+                    {
+                        expand: true,
+                        src: ["src/assets/images/*"],
+                        dest: 'dist/css/images/',
                         filter: 'isFile',
                         flatten: true
                     }
@@ -121,6 +132,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.registerTask('default', ["jshint", 'concat', 'uglify', 'concat_css', 'cssmin', 'copy', 'watch']); //, 'watch'
-    grunt.registerTask('dist', ['concat:appdist', 'uglify:appdist', 'concat_css:assetsdist', 'cssmin:assetsdist']);
+    grunt.registerTask('dev', ["jshint", 'concat', 'uglify', 'concat_css', 'cssmin', 'copy']); //, 'watch'
+    grunt.registerTask('dist', ['concat:appDist', 'uglify:appDist', 'concat_css:assetsDist', 'cssmin:assetsDist','copy:dist']);
 };

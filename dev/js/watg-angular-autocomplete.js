@@ -1,13 +1,13 @@
 (function() {
 	"use strict";
-	angular.module("watgAutocompleteApp", [
+	angular.module("watgAutocompleteModule", [
     	"ngRoute",
         "ngSanitize"
     ]);
 })();
 
 (function() {
-	var app = angular.module('watgAutocompleteApp');
+	var app = angular.module('watgAutocompleteModule');
 	app.config(appConfig);
 	app.run(appRun);
 
@@ -21,8 +21,7 @@
 		//disable IE ajax request caching
 		$httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';
 		//routes
-		$routeProvider
-		.when('/test', {
+		$routeProvider.when('/test', {
 			templateUrl: 'src/app/tests/testView.html',
 			controller: 'testController'
 		}).otherwise({
@@ -30,37 +29,32 @@
 		});
 	}
 
-	function appRun() {
-
-	}
-
-
+	function appRun() {}
 })();
 
 (function() {
     "use strict";
-    angular.module("watgAutocompleteApp").directive("watgAutocomplete", ['$rootScope', watgAutocomplete]);
+    angular.module("watgAutocompleteModule").directive("watgAutocomplete", watgAutocomplete);
 
-    function watgAutocomplete($rootScope) {
+    function watgAutocomplete() {
         return {
             restrict: "A",
             require: "ngModel",
             scope: {
                 selectedItem: "=",
-                itemDisplayPropertyName: "=",
-                delay: "=",
-                remoteUrl: "=",
-                minLength: "="
+                config: "="
             },
             link: link
         };
+        console.log(scope.config);
+        console.log(scope.selectedItem);
 
         function link(scope, element) {
             $(function() {
                 element.autocomplete({
                     source: function(request, response) {
                         $.get({
-                            url: scope.remoteUrl,
+                            url: scope.config.url,
                             dataType: "json",
                             xhrFields: {
                                 "withCredentials": true
@@ -81,7 +75,7 @@
                                         }
                                         return {
                                             id: item.Id,
-                                            value: item[scope.itemDisplayPropertyName],
+                                            value: item[scope.config.displayValue],
                                             item: item
                                         };
                                     }));
@@ -92,8 +86,8 @@
                             }
                         });
                     },
-                    delay: scope.delay,
-                    minLength: scope.minLength,
+                    delay: scope.config.delay,
+                    minLength: scope.config.minLength,
                     select: function(event, ui) {
                         scope.selectedItem = ui.item.item;
                         scope.$apply();
@@ -112,12 +106,21 @@
 
 (function() {
 	"use strict";
-	angular.module("watgAutocompleteApp").controller("testController", ['$scope', testController]);
+	angular.module("watgAutocompleteModule").controller("testController", ['$scope', testController]);
 
 	function testController($scope) {
-		$scope.staffAutoCompleteRemoteUrl = "http://irv9909zdqzq1/watgxapirest/api/Staff/AutoCompleteStaff";
-		$scope.countryAutoCompleteRemoteUrl = "http://irv9909zdqzq1/watgxapirest/api/Common/AutoCompleteWatgCountries";
-		$scope.minLength = 1;
+		$scope.autoCompleteConfigStaff = {
+            url: "http://irv9909zdqzq1/watgxapirest/api/Staff/AutoCompleteStaff",
+            displayValue: 'FullName',
+            delay: 200,
+            minLength:1
+        };
+        $scope.autoCompleteConfigCountry = {
+            url: "http://irv9909zdqzq1/watgxapirest/api/Common/AutoCompleteWatgCountries",
+            displayValue: 'Name',
+            delay: 200,
+            minLength:1
+        };
 		$scope.staff = {};
 		$scope.country = {};
 	}

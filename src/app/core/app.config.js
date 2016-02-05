@@ -1,5 +1,5 @@
 (function() {
-	var app = angular.module('watgAutocompleteApp');
+	var app = angular.module('watgAutocompleteModule');
 	app.config(appConfig);
 	app.run(appRun);
 
@@ -13,8 +13,7 @@
 		//disable IE ajax request caching
 		$httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';
 		//routes
-		$routeProvider
-		.when('/test', {
+		$routeProvider.when('/test', {
 			templateUrl: 'src/app/tests/testView.html',
 			controller: 'testController'
 		}).otherwise({
@@ -22,9 +21,5 @@
 		});
 	}
 
-	function appRun() {
-
-	}
-
-
+	function appRun() {}
 })();

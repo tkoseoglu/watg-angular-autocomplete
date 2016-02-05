@@ -3,12 +3,9 @@
 <div>
    <h3>Staff</h3>
    <input type="text" class="form-control"
-   watg-autocomplete min-length="minLength"
-   item-display-property-name="'FullName'"
+   watg-autocomplete config="autoCompleteConfigStaff"
    ng-model="staff.FullName"
-   remote-url="staffAutoCompleteRemoteUrl"
-   selected-item="staff"
-   />
+   selected-item="staff" />
    <br>
    <br> Output
    <pre>{{staff|json}}</pre>
@@ -16,10 +13,8 @@
 <div>
    <h3>Country</h3>
    <input type="text" class="form-control"
-   watg-autocomplete min-length="minLength"
-   item-display-property-name="'Name'"
+   watg-autocomplete config="autoCompleteConfigCountry"
    ng-model="country.Name"
-   remote-url="countryAutoCompleteRemoteUrl"
    selected-item="country"
    />
    <br>
