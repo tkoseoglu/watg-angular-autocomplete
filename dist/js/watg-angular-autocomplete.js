@@ -17,10 +17,10 @@
             },
             link: link
         };
-        console.log(scope.config);
-        console.log(scope.selectedItem);
 
         function link(scope, element) {
+            console.log(scope.config);
+            console.log(scope.selectedItem);
             $(function() {
                 element.autocomplete({
                     source: function(request, response) {
