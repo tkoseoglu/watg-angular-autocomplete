@@ -1,5 +1,5 @@
 # watg-angular-autocomplete
-WATG auto-complete directrive for angularjs web applications. Based on jquery-ui autocomplete API
+WATG auto-complete directrive for angularjs web applications. Based on jquery-ui autocomplete API.
 
 ## Getting Started
 
@@ -19,10 +19,8 @@ bower_components/watg-angular-autocomplete/dist/css/watg-angular-autocomplete.mi
 
 ### Inject module in your app
 
-ngSanitize is a required module.
-
 ```js
-angular.module('myApp', ['...', 'ngSanitize','watgAutocompleteApp']);
+angular.module('myApp', ['...','watgAutocompleteModule']);
 ```
 
 ## Example
@@ -31,21 +29,24 @@ angular.module('myApp', ['...', 'ngSanitize','watgAutocompleteApp']);
 
 ```html
 <input
-   type="text"
-   class="form-control"
-   watg-autocomplete
-   min-length="minLength"
-   item-display-property-name="'Name'"
-   ng-model="selectedItem.Name"
-   remote-url="remoteAutoCompleteSourceUrl"
-   selected-item="selectedItem"
-   />
+type="text"
+class="form-control"
+watg-autocomplete
+config="appConfig.autoCompleteStaffConfig"
+ng-model="absentee.StaffExt.FullName"
+selected-item="absentee.StaffExt"
+placeholder="type to find staff"
+/>
 ```
 
 ### Step 2. Configuration
 
 ```js
-$scope.remoteAutoCompleteSourceUrl = "http://...";
-$scope.minLength = 1; //based on jquery-ui auto-complete API
+$scope.autoCompleteStaffConfig: {
+    url: "http://...to your source of data",
+    displayValue: 'FullName', //the piece of data in your source that shows
+    delay: 200,  //jqueryUI API
+    minLength: 1 //jqueryUI API
+};
 $scope.selectedItem={};
 ```
