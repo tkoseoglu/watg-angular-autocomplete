@@ -132,6 +132,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.registerTask('dev', ["jshint", 'concat', 'uglify', 'concat_css', 'cssmin', 'copy']); //, 'watch'
+    grunt.registerTask('dev', ["jshint", 'concat', 'uglify', 'concat_css', 'cssmin', 'copy', 'watch']); //, 'watch'
     grunt.registerTask('dist', ['concat:appDist', 'uglify:appDist', 'concat_css:assetsDist', 'cssmin:assetsDist','copy:dist']);
 };

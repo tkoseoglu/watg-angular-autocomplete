@@ -3,7 +3,7 @@
 <div>
    <h3>Staff</h3>
    <input type="text" class="form-control"
-   watg-autocomplete config="autoCompleteConfigStaff"
+   watg-autocomplete-old config="autoCompleteConfigStaff"
    ng-model="staff.FullName"
    selected-item="staff" />
    <br>
@@ -13,11 +13,20 @@
 <div>
    <h3>Country</h3>
    <input type="text" class="form-control"
-   watg-autocomplete config="autoCompleteConfigCountry"
+   watg-autocomplete-old config="autoCompleteConfigCountry"
    ng-model="country.Name"
    selected-item="country"
    />
    <br>
    <br> Output
    <pre>{{country|json}}</pre>
+</div>
+<div>
+   <h3>2nd Version (Staff)</h3>
+   <watg-autocomplete config="autoCompleteConfigStaff"
+   ng-model="staff.FullName"
+   selected-item="staff" />
+   <br>
+   <br> Output
+   <pre>{{staff|json}}</pre>
 </div>

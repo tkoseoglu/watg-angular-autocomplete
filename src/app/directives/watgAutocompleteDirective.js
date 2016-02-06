@@ -1,8 +1,8 @@
 (function() {
     "use strict";
-    angular.module("watgAutocompleteModule").directive("watgAutocomplete", watgAutocomplete);
+    angular.module("watgAutocompleteModule").directive("watgAutocompleteOld", watgAutocompleteOld);
 
-    function watgAutocomplete() {
+    function watgAutocompleteOld() {
         return {
             restrict: "A",
             require: "ngModel",
