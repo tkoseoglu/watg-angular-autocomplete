@@ -28,14 +28,12 @@ angular.module('myApp', ['...','watgAutocompleteModule']);
 ### Step 1. Directive Set-up
 
 ```html
-<input
-type="text"
+<input type="text"
 class="form-control"
 watg-autocomplete
-config="appConfig.autoCompleteStaffConfig"
-ng-model="absentee.StaffExt.FullName"
-selected-item="absentee.StaffExt"
-placeholder="type to find staff"
+config="autoCompleteStaffConfig"
+ng-model="yourSelectedItem.FullName"
+selected-item="yourSelectedItem"
 />
 ```
 
@@ -48,5 +46,5 @@ $scope.autoCompleteStaffConfig: {
     delay: 200,  //jqueryUI API
     minLength: 1 //jqueryUI API
 };
-$scope.selectedItem={};
+$scope.yourSelectedItem={};
 ```
