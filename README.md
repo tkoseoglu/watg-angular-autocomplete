@@ -28,13 +28,10 @@ angular.module('myApp', ['...','watgAutocompleteModule']);
 ### Step 1. Directive Set-up
 
 ```html
-<input type="text"
-class="form-control"
-watg-autocomplete
+<watg-autocomplete
 config="autoCompleteStaffConfig"
 ng-model="yourSelectedItem.FullName"
-selected-item="yourSelectedItem"
-/>
+selected-item="yourSelectedItem"/>
 ```
 
 ### Step 2. Configuration
