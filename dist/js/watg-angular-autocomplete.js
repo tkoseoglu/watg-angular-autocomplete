@@ -5,12 +5,14 @@
 
 (function() {
     "use strict";
-    angular.module("watgAutocompleteModule").directive("watgAutocompleteOld", watgAutocompleteOld);
+    angular.module("watgAutocompleteModule").directive("watgAutocomplete", watgAutocomplete);
 
-    function watgAutocompleteOld() {
+    function watgAutocomplete() {
         return {
-            restrict: "A",
+            restrict: "E",
             require: "ngModel",
+            template: "<input type='text' class='form-control' />",
+            replace: "true",
             scope: {
                 selectedItem: "=",
                 config: "="
@@ -19,10 +21,8 @@
         };
 
         function link(scope, element) {
-            console.log(scope.config);
-            console.log(scope.selectedItem);
-            if (scope.config !== null && scope.config !== undefined && scope.config.url !== undefined) {
-                $(function() {
+            try {
+                if (scope.config !== null && scope.config !== undefined && scope.config.url !== undefined) {
                     element.autocomplete({
                         source: function(request, response) {
                             $.ajax({
@@ -71,9 +71,11 @@
                             $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
                         }
                     });
-                });
-            } else {
-                console.error("watg-angular-autocomplete: No configuration found");
+                } else {
+                    console.error("watg-angular-autocomplete: No configuration found");
+                }
+            } catch (e) {
+                 console.error("watg-angular-autocomplete: error " + e);
             }
         }
     }
