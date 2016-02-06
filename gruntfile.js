@@ -13,7 +13,7 @@ module.exports = function(grunt) {
                 dest: "dev/js/watg-angular-autocomplete.js"
             },
             appDist: {
-                src: ['src/app/appdist.js', 'src/app/directives/watgAutocompleteDirective.js'],
+                src: ['src/app/appdist.js', 'src/app/directives/watgAutocompleteDirective2.js'],
                 dest: 'dist/js/watg-angular-autocomplete.js'
             },
             vendor: {
