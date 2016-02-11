@@ -131,6 +131,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "gruntfile.js",
+			"settings":
+			{
+				"buffer_size": 5388,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -202,34 +210,34 @@
 	"expanded_folders":
 	[
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/bower_components/jquery/src",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/bower_components/jquery-ui",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/bower_components/jquery-ui/themes",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/bower_components/jquery-ui/themes/base",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/dev/js",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/node_modules/lite-server",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/directives",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/tests"
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/directives"
 	],
 	"file_history":
 	[
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/bs-config.js",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/README.md",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/directives/watgAutocompleteDirective2.js",
+		"/D/Tolga/Code/WATG/WATG TimeOff/WATG.TimeOff.Web/bower_components/watg-angular-autocomplete/dist/js/watg-angular-autocomplete.js",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/directives/watgAutocompleteDirective.js",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/tests/testController.js",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/tests/testView.html",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/app.js",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/gruntfile.js",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/core/app.config.js",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/index.html",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/dist/css/watg-angular-autocomplete.css",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/assets/watg-angular-autocomplete.css",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/dev/js/watg-angular-autocomplete.js",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/core/app.config.js",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/appDist.js",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/app.js",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/tests/testController.js",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/index.html",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/bower.json",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/gruntfile.js",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-richtext/gruntfile.js",
+		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/bs-config.js",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app.js",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/default.html",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/bs-config.json",
 		"/D/Tolga/Code/DEV/angular2/angular2-quickstart/index.html",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/package.json",
-		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/assets/watg-angular-autocomplete.css",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/watg-angular-autocomplete.sublime-project",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/controllers/watgAutocompleteTestController.js",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/.gitignore",
@@ -335,13 +343,7 @@
 		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgTableColumnConfigDirective.js",
 		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgTablePagerDirective.js",
 		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgTableSearchDirective.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/views/projects.html",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/controllers/projectNumberRequestController.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/const.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/views/proposalEdit.html",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/views/listEdit.html",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/views/projectEdit.html",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/views/siteAnalytics.html"
+		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/views/projects.html"
 	],
 	"find":
 	{
@@ -453,8 +455,39 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "gruntfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5388,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2947,
+								2947
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -517,7 +550,7 @@
 		[
 			[
 				"",
-				"D:\\Tolga\\Code\\WATG\\WATG TimeOff\\WATG.TimeOff.Web\\watg-timeoff.sublime-project"
+				"D:\\Tolga\\Code\\LATA\\METRA\\Schedule Manager\\meanstack\\timetable.editor.web.sublime-project"
 			]
 		],
 		"width": 950.0

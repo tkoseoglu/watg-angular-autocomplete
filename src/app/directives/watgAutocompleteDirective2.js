@@ -31,7 +31,7 @@
                                 },
                                 success: function(data) {
                                     if (data) {
-                                        if (data.length === 0 && scope.selectedItem) {
+                                        if (scope.config.forceSelection && data.length === 0 && scope.selectedItem) {
                                             scope.selectedItem = {};
                                             scope.$apply();
                                         }
@@ -40,9 +40,21 @@
                                                 scope.selectedItem = item;
                                                 scope.$apply();
                                             }
+                                            var value = item[scope.config.displayValue];
+                                            if (scope.config.displayValue2 && item[scope.config.displayValue2] !== undefined) {
+                                                var value2 = item[scope.config.displayValue2];
+                                                if (value2 !== null) {
+                                                    if (scope.config.displayValue3 && value2[scope.config.displayValue3] !== undefined) {
+                                                        var value3 = item[scope.config.displayValue2][scope.config.displayValue3]
+                                                        value += " (" + value3 + ")";
+                                                    } else {
+                                                        value += " (" + value2 + ")";
+                                                    }
+                                                }
+                                            }
                                             return {
                                                 id: item.Id,
-                                                value: item[scope.config.displayValue],
+                                                value: value,
                                                 item: item
                                             };
                                         }));
@@ -70,7 +82,7 @@
                     console.error("watg-angular-autocomplete: No configuration found");
                 }
             } catch (e) {
-                 console.error("watg-angular-autocomplete: error " + e);
+                console.error("watg-angular-autocomplete: error " + e);
             }
         }
     }
