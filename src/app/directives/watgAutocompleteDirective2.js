@@ -36,7 +36,7 @@
                                             scope.$apply();
                                         }
                                         response($.map(data, function(item) {
-                                            if (data.length === 1) {
+                                            if (scope.config.forceSelection && data.length === 1) {
                                                 scope.selectedItem = item;
                                                 scope.$apply();
                                             }
