@@ -105,7 +105,7 @@ module.exports = function(grunt) {
                     },
                     {
                         expand: true,
-                        src: ['bower_components/jquery-ui/themes/base/images/*',"src/assets/images/*"],
+                        src: ['bower_components/jquery-ui/themes/base/images/*', "src/assets/images/*"],
                         dest: 'dev/css/images/',
                         filter: 'isFile',
                         flatten: true
@@ -133,5 +133,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.registerTask('dev', ["jshint", 'concat', 'uglify', 'concat_css', 'cssmin', 'copy', 'watch']); //, 'watch'
-    grunt.registerTask('dist', ['concat:appDist', 'uglify:appDist', 'concat_css:assetsDist', 'cssmin:assetsDist','copy:dist']);
+    grunt.registerTask('dist', ['concat:appDist', 'uglify:appDist', 'concat_css:assetsDist', 'cssmin:assetsDist', 'copy:dist']);
 };

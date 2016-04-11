@@ -1,23 +1,24 @@
 (function() {
     "use strict";
-    angular.module("watgAutocompleteModule").directive("watgAutocompleteOld", watgAutocompleteOld);
+    angular.module("watgAutocompleteModule").directive("watgAutocomplete", watgAutocomplete);
 
-    function watgAutocompleteOld() {
+    function watgAutocomplete() {
         return {
-            restrict: "A",
+            restrict: "E",
             require: "ngModel",
+            template: "<input type='text' class='form-control' />",
+            replace: "true",
             scope: {
                 selectedItem: "=",
-                config: "="
+                config: "=",
+                itemFound: "="
             },
             link: link
         };
 
         function link(scope, element) {
-            console.log(scope.config);
-            console.log(scope.selectedItem);
-            if (scope.config !== null && scope.config !== undefined && scope.config.url !== undefined) {
-                $(function() {
+            try {
+                if (scope.config !== null && scope.config !== undefined && scope.config.url !== undefined) {
                     element.autocomplete({
                         source: function(request, response) {
                             $.ajax({
@@ -31,18 +32,35 @@
                                 },
                                 success: function(data) {
                                     if (data) {
-                                        if (data.length === 0 && scope.selectedItem) {
+                                        if(data.length === 0){
+                                            scope.itemFound = false;
+                                            scope.$apply();
+                                        }
+                                        if (scope.config.forceSelection && data.length === 0 && scope.selectedItem) {
                                             scope.selectedItem = {};
                                             scope.$apply();
                                         }
                                         response($.map(data, function(item) {
-                                            if (data.length === 1) {
+                                            if (scope.config.forceSelection && data.length === 1) {
                                                 scope.selectedItem = item;
+                                                scope.itemFound = false;
                                                 scope.$apply();
+                                            }
+                                            var value = item[scope.config.displayValue];
+                                            if (scope.config.displayValue2 && item[scope.config.displayValue2] !== undefined) {
+                                                var value2 = item[scope.config.displayValue2];
+                                                if (value2 !== null) {
+                                                    if (scope.config.displayValue3 && value2[scope.config.displayValue3] !== undefined) {
+                                                        var value3 = item[scope.config.displayValue2][scope.config.displayValue3]
+                                                        value += " (" + value3 + ")";
+                                                    } else {
+                                                        value += " (" + value2 + ")";
+                                                    }
+                                                }
                                             }
                                             return {
                                                 id: item.Id,
-                                                value: item[scope.config.displayValue],
+                                                value: value,
                                                 item: item
                                             };
                                         }));
@@ -57,6 +75,7 @@
                         minLength: scope.config.minLength,
                         select: function(event, ui) {
                             scope.selectedItem = ui.item.item;
+                            scope.itemFound = true;
                             scope.$apply();
                         },
                         open: function() {
@@ -66,9 +85,11 @@
                             $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
                         }
                     });
-                });
-            } else {
-                console.error("watg-angular-autocomplete: No configuration found");
+                } else {
+                    console.error("watg-angular-autocomplete: No configuration found");
+                }
+            } catch (e) {
+                console.error("watg-angular-autocomplete: error " + e);
             }
         }
     }
