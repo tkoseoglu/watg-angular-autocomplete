@@ -140,26 +140,10 @@
 			}
 		},
 		{
-			"file": "dist/js/watg-angular-autocomplete.js",
-			"settings":
-			{
-				"buffer_size": 4937,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "src/app/directives/watgAutocompleteDirective.js",
 			"settings":
 			{
-				"buffer_size": 4854,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/app/directives/watgAutocompleteDirective.js",
-			"settings":
-			{
-				"buffer_size": 4854,
+				"buffer_size": 4933,
 				"line_ending": "Windows"
 			}
 		}
@@ -244,6 +228,8 @@
 	],
 	"file_history":
 	[
+		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/directives/watgAutocompleteDirective.js",
+		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/dist/js/watg-angular-autocomplete.js",
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/app.js",
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/core/app.config.js",
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/directives/watgAutocompleteDirective2.js",
@@ -369,9 +355,7 @@
 		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/phoneNumberDirective.js",
 		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgAddressDisplayDirective.js",
 		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgLoadingAnimationDirective.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgManageAddressDirective.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgQuickAccountEditDirective.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgQuickContactEditDirective.js"
+		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgManageAddressDirective.js"
 	],
 	"find":
 	{
@@ -518,79 +502,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "dist/js/watg-angular-autocomplete.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 4937,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 540.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "src/app/directives/watgAutocompleteDirective.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4854,
+						"buffer_size": 4933,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3339,
-								3339
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 420.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/app/directives/watgAutocompleteDirective.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4854,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								745,
+								745
 							]
 						],
 						"settings":
@@ -603,7 +527,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

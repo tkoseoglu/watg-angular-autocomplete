@@ -49,7 +49,7 @@
                                         response($.map(data, function(item) {
                                             if (scope.config.forceSelection && data.length === 1) {
                                                 scope.selectedItem = item;
-                                                scope.itemFound = false;
+                                                scope.itemFound = true;
                                                 scope.$apply();
                                             }
                                             var value = item[scope.config.displayValue];
