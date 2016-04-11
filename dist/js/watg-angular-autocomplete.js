@@ -24,6 +24,7 @@
         function link(scope, element) {
             try {
                 if (scope.config !== null && scope.config !== undefined && scope.config.url !== undefined) {
+                    if(scope.itemFound === undefined) scope.itemFound = true;
                     element.autocomplete({
                         source: function(request, response) {
                             $.ajax({
