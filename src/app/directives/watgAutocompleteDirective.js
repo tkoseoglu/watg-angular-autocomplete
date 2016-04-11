@@ -11,7 +11,7 @@
             scope: {
                 selectedItem: "=",
                 config: "=",
-                itemFound: "="
+                itemFound: "=?"
             },
             link: link
         };
