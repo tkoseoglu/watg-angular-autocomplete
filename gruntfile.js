@@ -4,6 +4,23 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        connect: {
+            dev: {
+                options: {
+                    port: 9023,
+                    livereload: true,
+                    debug: true,
+                    target: 'http://localhost:9023/index.html', // target url to open
+                    open: true
+                }
+            },
+            test: {
+                options: {
+                    port: 9023,
+                    keepalive: false
+                }
+            }
+        },
         jshint: {
             beforeconcat: ["gruntfile.js", "app/**/*.js"]
         },
@@ -18,7 +35,7 @@ module.exports = function(grunt) {
             },
             vendor: {
                 src: [
-                    'bower_components/jquery/dist/jquery.js',
+                    'bower_components/jquery/jquery.js',
                     'bower_components/jquery-ui/jquery-ui.js',
                     'bower_components/bootstrap/dist/js/bootstrap.js',
                     'bower_components/angular/angular.js',
@@ -29,7 +46,7 @@ module.exports = function(grunt) {
             },
             vendorDist: {
                 src: [
-                    'bower_components/jquery/dist.jquery.min.js',
+                    'bower_components/jquery/jquery.min.js',
                     'bower_components/jquery-ui/jquery-ui.min.js',
                     'bower_components/bootstrap/dist/js/bootstrap.min.js',
                     'bower_components/angular/angular.min.js',
@@ -125,6 +142,7 @@ module.exports = function(grunt) {
             }
         }
     });
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-concat-css');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -132,6 +150,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.registerTask('dev', ["jshint", 'concat', 'uglify', 'concat_css', 'cssmin', 'copy', 'watch']); //, 'watch'
+    grunt.registerTask('dev', ["jshint", 'concat', 'uglify', 'concat_css', 'cssmin', 'copy','connect:dev', 'watch']); //, 'watch'
     grunt.registerTask('dist', ['concat:appDist', 'uglify:appDist', 'concat_css:assetsDist', 'cssmin:assetsDist', 'copy:dist']);
 };

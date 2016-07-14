@@ -143,7 +143,15 @@
 			"file": "src/app/directives/watgAutocompleteDirective.js",
 			"settings":
 			{
-				"buffer_size": 4933,
+				"buffer_size": 4932,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "dist/js/watg-angular-autocomplete.js",
+			"settings":
+			{
+				"buffer_size": 5015,
 				"line_ending": "Windows"
 			}
 		}
@@ -467,7 +475,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -497,7 +505,7 @@
 						"translation.y": 837.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -506,15 +514,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4933,
+						"buffer_size": 4932,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								745,
-								745
+								2219,
+								2219
 							]
 						],
 						"settings":
@@ -524,7 +532,37 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1479.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "dist/js/watg-angular-autocomplete.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 5015,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 300.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

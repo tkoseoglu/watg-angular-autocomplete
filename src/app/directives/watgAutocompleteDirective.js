@@ -19,21 +19,28 @@
         function link(scope, element) {
             try {
                 if (scope.config !== null && scope.config !== undefined && scope.config.url !== undefined) {
-                    if(scope.itemFound === undefined) scope.itemFound = true;
+                    if (scope.itemFound === undefined) scope.itemFound = true;
                     element.autocomplete({
                         source: function(request, response) {
+                            var vm = {
+                                namePart: request.term
+                            };
+                            if (scope.config.args) {
+                                for (var propt in scope.config.args) {
+                                    vm[propt] = scope.config.args[propt];
+                                }
+                            }
+                            console.log(vm);
                             $.ajax({
                                 url: scope.config.url,
                                 dataType: "json",
                                 xhrFields: {
                                     "withCredentials": true
                                 },
-                                data: {
-                                    namePart: request.term
-                                },
+                                data: vm,
                                 success: function(data) {
                                     if (data) {
-                                        if(data.length === 0){
+                                        if (data.length === 0) {
                                             scope.itemFound = false;
                                             scope.$apply();
                                         }

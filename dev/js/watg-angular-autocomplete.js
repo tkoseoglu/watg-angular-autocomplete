@@ -45,7 +45,7 @@
             scope: {
                 selectedItem: "=",
                 config: "=",
-                itemFound: "="
+                itemFound: "=?"
             },
             link: link
         };
@@ -53,20 +53,28 @@
         function link(scope, element) {
             try {
                 if (scope.config !== null && scope.config !== undefined && scope.config.url !== undefined) {
+                    if (scope.itemFound === undefined) scope.itemFound = true;
                     element.autocomplete({
                         source: function(request, response) {
+                            var vm = {
+                                namePart: request.term
+                            };
+                            if (scope.config.args) {
+                                for (var propt in scope.config.args) {
+                                    vm[propt] = scope.config.args[propt];
+                                }
+                            }
+                            console.log(vm);
                             $.ajax({
                                 url: scope.config.url,
                                 dataType: "json",
                                 xhrFields: {
                                     "withCredentials": true
                                 },
-                                data: {
-                                    namePart: request.term
-                                },
+                                data: vm,
                                 success: function(data) {
                                     if (data) {
-                                        if(data.length === 0){
+                                        if (data.length === 0) {
                                             scope.itemFound = false;
                                             scope.$apply();
                                         }
@@ -77,7 +85,7 @@
                                         response($.map(data, function(item) {
                                             if (scope.config.forceSelection && data.length === 1) {
                                                 scope.selectedItem = item;
-                                                scope.itemFound = false;
+                                                scope.itemFound = true;
                                                 scope.$apply();
                                             }
                                             var value = item[scope.config.displayValue];
@@ -130,23 +138,27 @@
 }());
 
 (function() {
-	"use strict";
-	angular.module("watgAutocompleteModule").controller("testController", ['$scope', testController]);
+    "use strict";
+    angular.module("watgAutocompleteModule").controller("testController", ['$scope', testController]);
 
-	function testController($scope) {
-		$scope.autoCompleteConfigStaff = {
+    function testController($scope) {
+        $scope.autoCompleteConfigStaff = {
             url: "http://irv9909zdqzq1/watgxapirest/api/Staff/AutoCompleteStaff",
             displayValue: 'FullName',
             delay: 200,
-            minLength:1
+            minLength: 1,
+            args: {
+                InActive: false,
+                Deleted: false
+            }
         };
         $scope.autoCompleteConfigCountry = {
             url: "http://irv9909zdqzq1/watgxapirest/api/Common/AutoCompleteWatgCountries",
             displayValue: 'Name',
             delay: 200,
-            minLength:1
+            minLength: 1
         };
-		$scope.staff = {};
-		$scope.country = {};
-	}
+        $scope.staff = {};
+        $scope.country = {};
+    }
 })();
