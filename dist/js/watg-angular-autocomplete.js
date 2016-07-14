@@ -16,8 +16,7 @@
             scope: {
                 selectedItem: "=",
                 config: "=",
-                itemFound: "=?",
-                args:"="
+                itemFound: "=?"
             },
             link: link
         };
@@ -29,8 +28,14 @@
                     element.autocomplete({
                         source: function(request, response) {
                             var vm = {
-                                namePart:request.term
+                                namePart: request.term
                             };
+                            if (scope.config.args) {
+                                for (var propt in scope.config.args) {
+                                    vm[propt] = scope.config.args[propt];
+                                }
+                            }
+                            console.log(vm);
                             $.ajax({
                                 url: scope.config.url,
                                 dataType: "json",
