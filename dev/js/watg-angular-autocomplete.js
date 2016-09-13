@@ -89,11 +89,21 @@
                                                 scope.$apply();
                                             }
                                             var value = "";
-                                            var displayValueCounter=0;
+                                            var displayValueCounter = 0;
                                             scope.config.displayValues.forEach(function(displayValue) {
                                                 console.log(displayValue);
-                                                if(displayValueCounter>0) value += ", ";
-                                                value += item[displayValue];
+                                                if (displayValueCounter > 0) value += ", ";
+                                                if (displayValue.indexOf(".") >= 0) {
+                                                    var parts = displayValue.split(".");
+                                                    //value += item[parts[0]][parts[1]];
+                                                    var currentItem = item;
+                                                    parts.forEach(function(part) {
+                                                        currentItem = currentItem[part];
+                                                        if (typeof currentItem !== 'object') value += currentItem;
+                                                    });
+                                                } else {
+                                                    value += item[displayValue];
+                                                }
                                                 displayValueCounter++;
                                             });
                                             /*if (scope.config.displayValue2 && item[scope.config.displayValue2] !== undefined) {
@@ -151,7 +161,7 @@
     function testController($scope) {
         $scope.autoCompleteConfigStaff = {
             url: "http://irv9909zdqzq1/watgxapirest/api/Staff/AutoCompleteStaff",
-            displayValues: ['FullName','Id'],
+            displayValues: ['FullName','WatgOffice.OfficeName'],
             delay: 200,
             minLength: 1,
             args: {
@@ -165,7 +175,14 @@
             delay: 200,
             minLength: 1
         };
+         $scope.autoCompleteConfigCompany = {
+            url: "http://localhost:63181/Util/AutoCompleteAccountsWithAddress",
+            displayValues: ['Name'],
+            delay: 200,
+            minLength: 1
+        };
         $scope.staff = {};
         $scope.country = {};
+        $scope.company = {};
     }
 })();

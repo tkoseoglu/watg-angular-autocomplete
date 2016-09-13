@@ -1,6 +1,15 @@
 <!-- here, test the main app feature, which is the watgAutocomplete directive -->
 <br>
 <div>
+   <h3>Company</h3>
+   <watg-autocomplete config="autoCompleteConfigCompany"
+      ng-model="company.Name"
+      selected-item="company" />
+   <br>
+   <br> Output
+   <pre>{{staff|json}}</pre>
+</div>
+<div>
    <h3>Staff</h3>
    <watg-autocomplete config="autoCompleteConfigStaff"
       ng-model="staff.FullName"

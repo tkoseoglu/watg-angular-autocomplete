@@ -5,7 +5,7 @@
     function testController($scope) {
         $scope.autoCompleteConfigStaff = {
             url: "http://irv9909zdqzq1/watgxapirest/api/Staff/AutoCompleteStaff",
-            displayValues: ['FullName','Id'],
+            displayValues: ['FullName','WatgOffice.OfficeName'],
             delay: 200,
             minLength: 1,
             args: {
@@ -19,7 +19,14 @@
             delay: 200,
             minLength: 1
         };
+         $scope.autoCompleteConfigCompany = {
+            url: "http://localhost:63181/Util/AutoCompleteAccountsWithAddress",
+            displayValues: ['Name'],
+            delay: 200,
+            minLength: 1
+        };
         $scope.staff = {};
         $scope.country = {};
+        $scope.company = {};
     }
 })();
