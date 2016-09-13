@@ -54,8 +54,15 @@
                                                 scope.itemFound = true;
                                                 scope.$apply();
                                             }
-                                            var value = item[scope.config.displayValue];
-                                            if (scope.config.displayValue2 && item[scope.config.displayValue2] !== undefined) {
+                                            var value = "";
+                                            var displayValueCounter=0;
+                                            scope.config.displayValues.forEach(function(displayValue) {
+                                                console.log(displayValue);
+                                                if(displayValueCounter>0) value += ", ";
+                                                value += item[displayValue];
+                                                displayValueCounter++;
+                                            });
+                                            /*if (scope.config.displayValue2 && item[scope.config.displayValue2] !== undefined) {
                                                 var value2 = item[scope.config.displayValue2];
                                                 if (value2 !== null) {
                                                     if (scope.config.displayValue3 && value2[scope.config.displayValue3] !== undefined) {
@@ -65,7 +72,7 @@
                                                         value += " (" + value2 + ")";
                                                     }
                                                 }
-                                            }
+                                            }*/
                                             return {
                                                 id: item.Id,
                                                 value: value,

@@ -101,7 +101,7 @@ module.exports = function(grunt) {
                     'dev/css/vendor.css': [
                         'bower_components/bootstrap/dist/css/bootstrap.css',
                         'bower_components/fontawesome/css/font-awesome.css',
-                        'bower_components/jquery-ui/themes/base/all.css',
+                        'bower_components/jquery-ui/themes/base/jquery-ui.css',
                     ]
                 }
             }

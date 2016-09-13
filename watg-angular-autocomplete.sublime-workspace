@@ -132,27 +132,11 @@
 	"buffers":
 	[
 		{
-			"file": "gruntfile.js",
+			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 5389,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/app/directives/watgAutocompleteDirective.js",
-			"settings":
-			{
-				"buffer_size": 4932,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "dist/js/watg-angular-autocomplete.js",
-			"settings":
-			{
-				"buffer_size": 5015,
-				"line_ending": "Windows"
+				"buffer_size": 989,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -226,22 +210,23 @@
 	"expanded_folders":
 	[
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete",
-		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/dist",
-		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/dist/js",
-		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src",
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app",
-		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/core",
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/directives",
-		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/assets"
+		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/tests"
 	],
 	"file_history":
 	[
+		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/tests/testView.html",
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/directives/watgAutocompleteDirective.js",
+		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/tests/testController.js",
+		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/index.html",
+		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/gruntfile.js",
+		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/dev/js/vendor.js",
+		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/package.json",
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/dist/js/watg-angular-autocomplete.js",
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/app.js",
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/core/app.config.js",
 		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/src/app/directives/watgAutocompleteDirective2.js",
-		"/D/Tolga/Code/WATG/WATG GitHub/watg-angular-autocomplete/gruntfile.js",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/bower.json",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/README.md",
 		"/D/Tolga/Code/WATG/WATG Bower/watg-angular-autocomplete/src/app/directives/watgAutocompleteDirective2.js",
@@ -358,12 +343,7 @@
 		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/autoCompleteAddressDirective.js",
 		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/autoCompleteContactsDirective.js",
 		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/autoCompleteContactsDirective2.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/autoCompleteProjectsDirective.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/autoCompleteStaffDirective.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/phoneNumberDirective.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgAddressDisplayDirective.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgLoadingAnimationDirective.js",
-		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/wgManageAddressDirective.js"
+		"/D/Tolga/Code/WATG/WATG X/WATG/WATG.Crm.Web2/app/directives/autoCompleteProjectsDirective.js"
 	],
 	"find":
 	{
@@ -475,94 +455,34 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "gruntfile.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5389,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								571,
-								571
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 837.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/app/directives/watgAutocompleteDirective.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4932,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2219,
-								2219
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1479.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "dist/js/watg-angular-autocomplete.js",
+					"file": "package.json",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 5015,
+						"buffer_size": 989,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								447,
+								447
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 300.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
