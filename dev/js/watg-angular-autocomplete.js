@@ -92,31 +92,23 @@
                                             var displayValueCounter = 0;
                                             scope.config.displayValues.forEach(function(displayValue) {
                                                 console.log(displayValue);
-                                                if (displayValueCounter > 0) value += ", ";
+                                                var valuePart;
                                                 if (displayValue.indexOf(".") >= 0) {
                                                     var parts = displayValue.split(".");
-                                                    //value += item[parts[0]][parts[1]];
                                                     var currentItem = item;
                                                     parts.forEach(function(part) {
-                                                        currentItem = currentItem[part];
-                                                        if (typeof currentItem !== 'object') value += currentItem;
+                                                        if (currentItem !== null) {
+                                                            currentItem = currentItem[part];
+                                                            if (typeof currentItem !== 'object') valuePart = currentItem;
+                                                        }
                                                     });
                                                 } else {
-                                                    value += item[displayValue];
+                                                    valuePart = item[displayValue];
                                                 }
+                                                if (displayValueCounter > 0 && valuePart) value += ", ";
+                                                if (valuePart !== undefined) value += valuePart;
                                                 displayValueCounter++;
                                             });
-                                            /*if (scope.config.displayValue2 && item[scope.config.displayValue2] !== undefined) {
-                                                var value2 = item[scope.config.displayValue2];
-                                                if (value2 !== null) {
-                                                    if (scope.config.displayValue3 && value2[scope.config.displayValue3] !== undefined) {
-                                                        var value3 = item[scope.config.displayValue2][scope.config.displayValue3]
-                                                        value += " (" + value3 + ")";
-                                                    } else {
-                                                        value += " (" + value2 + ")";
-                                                    }
-                                                }
-                                            }*/
                                             return {
                                                 id: item.Id,
                                                 value: value,
