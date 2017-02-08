@@ -148,12 +148,79 @@
 
 (function() {
     "use strict";
+    angular.module("watgAutocompleteModule").directive("watgAutocompleteExternal", watgAutocompleteExternal);
+
+    function watgAutocompleteExternal() {
+        return {
+            restrict: "E",
+            require: "ngModel",
+            template: "<input type='text' class='form-control' />",
+            replace: "true",
+            scope: {
+                config: "=",
+                selectedItem: "="
+            },
+            link: link
+        };
+
+        function link(scope, element) {
+            try {
+                if (scope.config.url !== null) {
+                    element.autocomplete({
+                        source: function(request, response) {
+                            $.ajax({
+                                url: scope.config.url,
+                                dataType: "json",
+                                data: {
+                                    "school.name": request.term,
+                                    api_key: "tyAt6Kvkm030toXJY6ApfIJDDgu8uo0UKqwu6qNo"
+                                },
+                                success: function(data) {
+                                    var results = data[scope.config.displayValues[0]];
+                                    response($.map(results, function(result) {
+                                        var value = result["school"]["name"];
+                                        return {
+                                            value: value,
+                                            item: result
+                                        };
+                                    }));
+                                },
+                                error: function(response) {
+                                    console.log(response);
+                                }
+                            });
+                        },
+                        delay: scope.config.delay,
+                        minLength: scope.config.minLength,
+                        select: function(event, ui) {
+                            // scope.selectedItem = ui.item.item;
+                            // scope.itemFound = true;
+                            // scope.$apply();
+                        },
+                        open: function() {
+                            $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                        },
+                        close: function() {
+                            $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                        }
+                    });
+                } else {
+                    console.error("watg-angular-autocomplete-external: No configuration found");
+                }
+            } catch (e) {
+                console.error("watg-angular-autocomplete-external: error " + e);
+            }
+        }
+    }
+}());
+(function() {
+    "use strict";
     angular.module("watgAutocompleteModule").controller("testController", ['$scope', testController]);
 
     function testController($scope) {
         $scope.autoCompleteConfigStaff = {
-            url: "http://irv9909zdqzq1/watgxapirest/api/Staff/AutoCompleteStaff",
-            displayValues: ['FullName','WatgOffice.OfficeName'],
+            url: "http://192.168.0.7/watgApi/api/Staff/AutoCompleteStaff",
+            displayValues: ['FullName', 'WatgOffice.OfficeName'],
             delay: 200,
             minLength: 1,
             args: {
@@ -162,12 +229,12 @@
             }
         };
         $scope.autoCompleteConfigCountry = {
-            url: "http://irv9909zdqzq1/watgxapirest/api/Common/AutoCompleteWatgCountries",
+            url: "http://192.168.0.7/watgApi/api/Common/AutoCompleteWatgCountries",
             displayValues: ['Name'],
             delay: 200,
             minLength: 1
         };
-         $scope.autoCompleteConfigCompany = {
+        $scope.autoCompleteConfigCompany = {
             url: "http://localhost:63181/Util/AutoCompleteAccountsWithAddress",
             displayValues: ['Name'],
             delay: 200,
@@ -176,5 +243,20 @@
         $scope.staff = {};
         $scope.country = {};
         $scope.company = {};
+
+
+        $scope.autoCompleteConfigExternalSource = {
+            url: "https://api.data.gov/ed/collegescorecard/v1/schools",
+            displayValues: ['results', 'school', 'name'],
+            delay: 200,
+            minLength: 2
+        };
+        $scope.selectedExternalItem = "Test";
+        // //external
+        // //https://www.nearbycolleges.info/api/autocomplete?q=texas&limit=10
+        // //$scope.externalBaseUrl = "https://www.nearbycolleges.info/api/autocomplete";
+        // $scope.externalBaseUrl = "https://api.data.gov/ed/collegescorecard/v1/schools";
+        // $scope.dataPath = "results";
+
     }
 })();
