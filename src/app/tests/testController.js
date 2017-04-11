@@ -8,6 +8,7 @@
         $scope.country = {};
         $scope.company = {};
 
+
         $scope.autoCompleteConfigStaff = {
             url: "http://192.168.0.7/watgApi/api/Staff/AutoCompleteStaff",
             displayValues: ['FullName', 'WatgOffice.OfficeName'],
