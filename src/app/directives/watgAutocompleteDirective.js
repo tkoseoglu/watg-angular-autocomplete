@@ -30,7 +30,6 @@
                                     vm[propt] = scope.config.args[propt];
                                 }
                             }
-                            console.log(vm);
                             $.ajax({
                                 url: scope.config.url,
                                 dataType: "json",
@@ -54,9 +53,11 @@
                                                 scope.itemFound = true;
                                                 scope.$apply();
                                             }
-                                            var value = "";
+                                            var value = item[scope.config.displayValues[0]];
                                             var displayValueCounter = 0;
-                                            scope.config.displayValues.forEach(function(displayValue) {
+                                            var details = "";
+                                            for (var i = 1; i < scope.config.displayValues.length; i++) {
+                                                var displayValue = scope.config.displayValues[i];
                                                 console.log(displayValue);
                                                 var valuePart;
                                                 if (displayValue.indexOf(".") >= 0) {
@@ -71,13 +72,14 @@
                                                 } else {
                                                     valuePart = item[displayValue];
                                                 }
-                                                if (displayValueCounter > 0 && valuePart) value += ", ";
-                                                if (valuePart !== undefined) value += valuePart;
+                                                if (displayValueCounter > 0 && valuePart) details += ", ";
+                                                if (valuePart !== undefined) details += valuePart;
                                                 displayValueCounter++;
-                                            });
+                                            }
                                             return {
                                                 id: item.Id,
                                                 value: value,
+                                                details: details,
                                                 item: item
                                             };
                                         }));
@@ -101,7 +103,11 @@
                         close: function() {
                             $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
                         }
-                    });
+                    }).autocomplete("instance")._renderItem = function(ul, item) {
+                        return $("<li>")
+                            .append("<div>" + item.value + "</div><div style='color:gray; font-style:italic'>" + item.details + "</div>")
+                            .appendTo(ul);
+                    };
                 } else {
                     console.error("watg-angular-autocomplete: No configuration found");
                 }

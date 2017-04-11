@@ -1,6 +1,3 @@
-/**
- * Created by Kemal on 02/05/16.
- */
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -112,8 +109,7 @@ module.exports = function(grunt) {
         },
         copy: {
             dev: {
-                files: [
-                    {
+                files: [{
                         expand: true,
                         src: ['bower_components/fontawesome/fonts/*', 'bower_components/bootstrap/fonts/*'],
                         dest: 'dev/fonts/',
@@ -130,15 +126,13 @@ module.exports = function(grunt) {
                 ]
             },
             dist: {
-                files: [
-                    {
-                        expand: true,
-                        src: ["src/assets/images/*"],
-                        dest: 'dist/css/images/',
-                        filter: 'isFile',
-                        flatten: true
-                    }
-                ]
+                files: [{
+                    expand: true,
+                    src: ["src/assets/images/*"],
+                    dest: 'dist/css/images/',
+                    filter: 'isFile',
+                    flatten: true
+                }]
             }
         }
     });
@@ -150,6 +144,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.registerTask('dev', ["jshint", 'concat', 'uglify', 'concat_css', 'cssmin', 'copy','connect:dev', 'watch']); //, 'watch'
+    grunt.registerTask('dev', ["jshint", 'concat', 'uglify', 'concat_css', 'cssmin', 'copy', 'connect:dev', 'watch']); //, 'watch'
     grunt.registerTask('dist', ['concat:appDist', 'uglify:appDist', 'concat_css:assetsDist', 'cssmin:assetsDist', 'copy:dist']);
 };

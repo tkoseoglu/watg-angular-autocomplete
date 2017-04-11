@@ -3,6 +3,11 @@
     angular.module("watgAutocompleteModule").controller("testController", ['$scope', testController]);
 
     function testController($scope) {
+
+        $scope.staff = {};
+        $scope.country = {};
+        $scope.company = {};
+
         $scope.autoCompleteConfigStaff = {
             url: "http://192.168.0.7/watgApi/api/Staff/AutoCompleteStaff",
             displayValues: ['FullName', 'WatgOffice.OfficeName'],
@@ -25,11 +30,6 @@
             delay: 200,
             minLength: 1
         };
-        $scope.staff = {};
-        $scope.country = {};
-        $scope.company = {};
-
-
         $scope.autoCompleteConfigExternalSource = {
             url: "https://api.data.gov/ed/collegescorecard/v1/schools",
             displayValues: ['results', 'school', 'name'],
@@ -37,6 +37,7 @@
             minLength: 2
         };
         $scope.selectedExternalItem = "Test";
+
         // //external
         // //https://www.nearbycolleges.info/api/autocomplete?q=texas&limit=10
         // //$scope.externalBaseUrl = "https://www.nearbycolleges.info/api/autocomplete";
