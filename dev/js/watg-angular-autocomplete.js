@@ -1,268 +1,269 @@
-(function() {
-	"use strict";
-	angular.module("watgAutocompleteModule", [
-    	"ngRoute",
-        "ngSanitize"
-    ]);
+(function () {
+   "use strict";
+   angular.module("watgAutocompleteModule", [
+      "ngRoute",
+      "ngSanitize"
+   ]);
 })();
 
-(function() {
-	var app = angular.module('watgAutocompleteModule');
-	app.config(appConfig);
-	app.run(appRun);
+(function () {
+   var app = angular.module('watgAutocompleteModule');
+   app.config(appConfig);
+   app.run(appRun);
 
-	function appConfig($httpProvider, $routeProvider) {
-		//this is for CORS operations
-		$httpProvider.defaults.useXDomain = true;
-		delete $httpProvider.defaults.headers.common['X-Requested-With'];
-		if (!$httpProvider.defaults.headers.get) {
-			$httpProvider.defaults.headers.get = {};
-		}
-		//disable IE ajax request caching
-		$httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';
-		//routes
-		$routeProvider.when('/test', {
-			templateUrl: 'src/app/tests/testView.html',
-			controller: 'testController'
-		}).otherwise({
-			redirectTo: '/test'
-		});
-	}
+   function appConfig($httpProvider, $routeProvider) {
+      //this is for CORS operations
+      $httpProvider.defaults.useXDomain = true;
+      delete $httpProvider.defaults.headers.common['X-Requested-With'];
+      if (!$httpProvider.defaults.headers.get) {
+         $httpProvider.defaults.headers.get = {};
+      }
+      //disable IE ajax request caching
+      $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';
+      //routes
+      $routeProvider.when('/test', {
+         templateUrl: 'src/app/tests/testView.html',
+         controller: 'testController'
+      }).otherwise({
+         redirectTo: '/test'
+      });
+   }
 
-	function appRun() {}
+   function appRun() { }
 })();
 
-(function() {
-    "use strict";
-    angular.module("watgAutocompleteModule").directive("watgAutocomplete", watgAutocomplete);
+(function () {
+   "use strict";
+   angular.module("watgAutocompleteModule").directive("watgAutocomplete", watgAutocomplete);
 
-    function watgAutocomplete() {
-        return {
-            restrict: "E",
-            require: "ngModel",
-            template: "<input type='text' class='form-control' />",
-            replace: "true",
-            scope: {
-                selectedItem: "=",
-                config: "=",
-                itemFound: "=?"
-            },
-            link: link
-        };
+   function watgAutocomplete() {
+      return {
+         restrict: "E",
+         require: "ngModel",
+         template: "<input type='text' class='form-control' />",
+         replace: "true",
+         scope: {
+            selectedItem: "=",
+            config: "=",
+            itemFound: "=?"
+         },
+         link: link
+      };
 
-        function link(scope, element) {
-            try {
-                if (scope.config !== null && scope.config !== undefined && scope.config.url !== undefined) {
-                    if (scope.itemFound === undefined) scope.itemFound = true;
-                    element.autocomplete({
-                        source: function(request, response) {
-                            var vm = {
-                                namePart: request.term
-                            };
-                            if (scope.config.args) {
-                                for (var propt in scope.config.args) {
-                                    vm[propt] = scope.config.args[propt];
-                                }
-                            }
-                            $.ajax({
-                                url: scope.config.url,
-                                dataType: "json",
-                                xhrFields: {
-                                    "withCredentials": true
-                                },
-                                data: vm,
-                                success: function(data) {
-                                    if (data) {
-                                        if (data.length === 0) {
-                                            scope.itemFound = false;
-                                            scope.$apply();
-                                        }
-                                        if (scope.config.forceSelection && data.length === 0 && scope.selectedItem) {
-                                            scope.selectedItem = {};
-                                            scope.$apply();
-                                        }
-                                        response($.map(data, function(item) {
-                                            if (scope.config.forceSelection && data.length === 1) {
-                                                scope.selectedItem = item;
-                                                scope.itemFound = true;
-                                                scope.$apply();
-                                            }
-                                            var value = item[scope.config.displayValues[0]];
-                                            var displayValueCounter = 0;
-                                            var details = "";
-                                            for (var i = 1; i < scope.config.displayValues.length; i++) {
-                                                var displayValue = scope.config.displayValues[i];
-                                                console.log(displayValue);
-                                                var valuePart;
-                                                if (displayValue.indexOf(".") >= 0) {
-                                                    var parts = displayValue.split(".");
-                                                    var currentItem = item;
-                                                    parts.forEach(function(part) {
-                                                        if (currentItem !== null) {
-                                                            currentItem = currentItem[part];
-                                                            if (typeof currentItem !== 'object') valuePart = currentItem;
-                                                        }
-                                                    });
-                                                } else {
-                                                    valuePart = item[displayValue];
-                                                }
-                                                if (displayValueCounter > 0 && valuePart) details += ", ";
-                                                if (valuePart !== undefined) details += valuePart;
-                                                displayValueCounter++;
-                                            }
-                                            return {
-                                                id: item.Id,
-                                                value: value,
-                                                details: details,
-                                                item: item
-                                            };
-                                        }));
+      function link(scope, element) {
+         try {
+            if (scope.config !== null && scope.config !== undefined && scope.config.url !== undefined) {
+               if (scope.itemFound === undefined) scope.itemFound = true;
+               element.autocomplete({
+                  source: function (request, response) {
+                     var vm = {
+                        namePart: request.term
+                     };
+                     if (scope.config.args) {
+                        for (var propt in scope.config.args) {
+                           vm[propt] = scope.config.args[propt];
+                        }
+                     }
+                     $.ajax({
+                        url: scope.config.url,
+                        dataType: "json",
+                        xhrFields: {
+                           "withCredentials": true
+                        },
+                        data: vm,
+                        success: function (data) {
+                           if (data) {
+                              if (data.length === 0) {
+                                 scope.itemFound = false;
+                                 scope.$apply();
+                              }
+                              if (scope.config.forceSelection && data.length === 0 && scope.selectedItem) {
+                                 scope.selectedItem = {};
+                                 scope.$apply();
+                              }
+                              response($.map(data, function (item) {
+                                 if (scope.config.forceSelection && data.length === 1) {
+                                    scope.selectedItem = item;
+                                    scope.itemFound = true;
+                                    scope.$apply();
+                                 }
+                                 var value = item[scope.config.displayValues[0]];
+                                 var displayValueCounter = 0;
+                                 var details = "";
+                                 for (var i = 1; i < scope.config.displayValues.length; i++) {
+                                    var displayValue = scope.config.displayValues[i];
+                                    console.log(displayValue);
+                                    var valuePart;
+                                    if (displayValue.indexOf(".") >= 0) {
+                                       var parts = displayValue.split(".");
+                                       var currentItem = item;
+                                       parts.forEach(function (part) {
+                                          if (currentItem !== null) {
+                                             currentItem = currentItem[part];
+                                             if (typeof currentItem !== 'object') valuePart = currentItem;
+                                          }
+                                       });
+                                    } else {
+                                       valuePart = item[displayValue];
                                     }
-                                },
-                                error: function(data) {
-                                    console.log(data);
-                                }
-                            });
+                                    if (displayValueCounter > 0 && valuePart) details += ", ";
+                                    if (valuePart !== undefined) details += valuePart;
+                                    displayValueCounter++;
+                                 }
+                                 return {
+                                    id: item.Id,
+                                    value: value,
+                                    details: details,
+                                    item: item
+                                 };
+                              }));
+                           }
                         },
-                        delay: scope.config.delay,
-                        minLength: scope.config.minLength,
-                        select: function(event, ui) {
-                            scope.selectedItem = ui.item.item;
-                            scope.itemFound = true;
-                            scope.$apply();
-                        },
-                        open: function() {
-                            $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-                        },
-                        close: function() {
-                            $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                        error: function (data) {
+                           console.log(data);
                         }
-                    }).autocomplete("instance")._renderItem = function(ul, item) {
-                        return $("<li>")
-                            .append("<div>" + item.value + "</div><div style='color:gray; font-style:italic'>" + item.details + "</div>")
-                            .appendTo(ul);
-                    };
-                } else {
-                    console.error("watg-angular-autocomplete: No configuration found");
-                }
-            } catch (e) {
-                console.error("watg-angular-autocomplete: error " + e);
+                     });
+                  },
+                  delay: scope.config.delay,
+                  minLength: scope.config.minLength,
+                  select: function (event, ui) {
+                     scope.selectedItem = ui.item.item;
+                     scope.itemFound = true;
+                     scope.$apply();
+                  },
+                  open: function () {
+                     $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                  },
+                  close: function () {
+                     $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                  }
+               }).autocomplete("instance")._renderItem = function (ul, item) {
+                  return $("<li>")
+                     .append("<div>" + item.value + "</div><div style='color:gray; font-style:italic'>" + item.details + "</div>")
+                     .appendTo(ul);
+               };
+            } else {
+               console.error("watg-angular-autocomplete: No configuration found");
             }
-        }
-    }
+         } catch (e) {
+            console.error("watg-angular-autocomplete: error " + e);
+         }
+      }
+   }
 }());
-(function() {
-    "use strict";
-    angular.module("watgAutocompleteModule").directive("watgAutocompleteExternal", watgAutocompleteExternal);
+(function () {
+   "use strict";
+   angular.module("watgAutocompleteModule").directive("watgAutocompleteExternal", watgAutocompleteExternal);
 
-    function watgAutocompleteExternal() {
-        return {
-            restrict: "E",
-            require: "ngModel",
-            template: "<input type='text' class='form-control' />",
-            replace: "true",
-            scope: {
-                config: "=",
-                selectedItem: "="
-            },
-            link: link
-        };
+   function watgAutocompleteExternal() {
+      return {
+         restrict: "E",
+         require: "ngModel",
+         template: "<input type='text' class='form-control' />",
+         replace: "true",
+         scope: {
+            config: "=",
+            selectedItem: "="
+         },
+         link: link
+      };
 
-        function link(scope, element) {
-            try {
-                if (scope.config.url !== null) {
-                    element.autocomplete({
-                        source: function(request, response) {
-                            $.ajax({
-                                url: scope.config.url,
-                                dataType: "json",
-                                data: {
-                                    "school.name": request.term,
-                                    api_key: "tyAt6Kvkm030toXJY6ApfIJDDgu8uo0UKqwu6qNo"
-                                },
-                                success: function(data) {
-                                    var results = data[scope.config.displayValues[0]];
-                                    response($.map(results, function(result) {
-                                        var value = result["school"]["name"];
-                                        return {
-                                            value: value,
-                                            item: result
-                                        };
-                                    }));
-                                },
-                                error: function(response) {
-                                    console.log(response);
-                                }
-                            });
+      function link(scope, element) {
+         try {
+            if (scope.config.url !== null) {
+               element.autocomplete({
+                  source: function (request, response) {
+                     $.ajax({
+                        url: scope.config.url,
+                        dataType: "json",
+                        data: {
+                           "school.name": request.term,
+                           api_key: "tyAt6Kvkm030toXJY6ApfIJDDgu8uo0UKqwu6qNo"
                         },
-                        delay: scope.config.delay,
-                        minLength: scope.config.minLength,
-                        select: function(event, ui) {
-                            // scope.selectedItem = ui.item.item;
-                            // scope.itemFound = true;
-                            // scope.$apply();
+                        success: function (data) {
+                           var results = data[scope.config.displayValues[0]];
+                           response($.map(results, function (result) {
+                              var value = result["school"]["name"];
+                              return {
+                                 value: value,
+                                 item: result
+                              };
+                           }));
                         },
-                        open: function() {
-                            $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-                        },
-                        close: function() {
-                            $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                        error: function (response) {
+                           console.log(response);
                         }
-                    });
-                } else {
-                    console.error("watg-angular-autocomplete-external: No configuration found");
-                }
-            } catch (e) {
-                console.error("watg-angular-autocomplete-external: error " + e);
+                     });
+                  },
+                  delay: scope.config.delay,
+                  minLength: scope.config.minLength,
+                  select: function (event, ui) {
+                     // scope.selectedItem = ui.item.item;
+                     // scope.itemFound = true;
+                     // scope.$apply();
+                  },
+                  open: function () {
+                     $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                  },
+                  close: function () {
+                     $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                  }
+               });
+            } else {
+               console.error("watg-angular-autocomplete-external: No configuration found");
             }
-        }
-    }
+         } catch (e) {
+            console.error("watg-angular-autocomplete-external: error " + e);
+         }
+      }
+   }
 }());
-(function() {
-    "use strict";
-    angular.module("watgAutocompleteModule").controller("testController", ['$scope', testController]);
+(function () {
+   "use strict";
+   angular.module("watgAutocompleteModule").controller("testController", ['$scope', testController]);
 
-    function testController($scope) {
+   function testController($scope) {
 
-        $scope.staff = {};
-        $scope.country = {};
-        $scope.company = {};
+      $scope.staff = {};
+      $scope.country = {};
+      $scope.company = {};
 
-        $scope.autoCompleteConfigStaff = {
-            url: "http://192.168.0.7/watgApi/api/Staff/AutoCompleteStaff",
-            displayValues: ['FullName', 'WatgOffice.OfficeName'],
-            delay: 200,
-            minLength: 1,
-            args: {
-                InActive: false,
-                Deleted: false
-            }
-        };
-        $scope.autoCompleteConfigCountry = {
-            url: "http://192.168.0.7/watgApi/api/Common/AutoCompleteWatgCountries",
-            displayValues: ['Name'],
-            delay: 200,
-            minLength: 1
-        };
-        $scope.autoCompleteConfigCompany = {
-            url: "http://localhost:63181/Util/AutoCompleteAccountsWithAddress",
-            displayValues: ['Name'],
-            delay: 200,
-            minLength: 1
-        };
-        $scope.autoCompleteConfigExternalSource = {
-            url: "https://api.data.gov/ed/collegescorecard/v1/schools",
-            displayValues: ['results', 'school', 'name'],
-            delay: 200,
-            minLength: 2
-        };
-        $scope.selectedExternalItem = "Test";
 
-        // //external
-        // //https://www.nearbycolleges.info/api/autocomplete?q=texas&limit=10
-        // //$scope.externalBaseUrl = "https://www.nearbycolleges.info/api/autocomplete";
-        // $scope.externalBaseUrl = "https://api.data.gov/ed/collegescorecard/v1/schools";
-        // $scope.dataPath = "results";
+      $scope.autoCompleteConfigStaff = {
+         url: "http://localhost:6349/api/Staff/AutoCompleteStaff",
+         displayValues: ['FullName', 'WatgOffice.OfficeName'],
+         delay: 200,
+         minLength: 1,
+         args: {
+            InActive: false,
+            Deleted: false
+         }
+      };
+      $scope.autoCompleteConfigCountry = {
+         url: "http://localhost:6349/api/Common/AutoCompleteWatgCountries",
+         displayValues: ['Name'],
+         delay: 200,
+         minLength: 1
+      };
+      $scope.autoCompleteConfigCompany = {
+         url: "http://localhost:63181/Util/AutoCompleteAccountsWithAddress",
+         displayValues: ['Name'],
+         delay: 200,
+         minLength: 1
+      };
+      $scope.autoCompleteConfigExternalSource = {
+         url: "https://api.data.gov/ed/collegescorecard/v1/schools",
+         displayValues: ['results', 'school', 'name'],
+         delay: 200,
+         minLength: 2
+      };
+      $scope.selectedExternalItem = "Test";
 
-    }
+      // //external
+      // //https://www.nearbycolleges.info/api/autocomplete?q=texas&limit=10
+      // //$scope.externalBaseUrl = "https://www.nearbycolleges.info/api/autocomplete";
+      // $scope.externalBaseUrl = "https://api.data.gov/ed/collegescorecard/v1/schools";
+      // $scope.dataPath = "results";
+
+   }
 })();

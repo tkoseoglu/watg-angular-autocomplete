@@ -26,18 +26,7 @@
     "tests"
   ],
   "dependencies": {
-    "jquery-ui": "*",
     "jquery": "1.10.2",
-    "angular": "1.5.8",
-    "angular-route": "1.5.8",
-    "angular-sanitize": "1.5.8"
-  },
-  "devDependencies": {
-    "bootstrap": "*",
-    "angular-sanitize": "^1.5.0",
-    "angular-route": "^1.5.0"
-  },
-  "resolutions": {
-    "angular": "1.5.8"
+    "jquery-ui": "1.11.4"
   }
 }
